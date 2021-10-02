@@ -1,0 +1,11 @@
+.footer{
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    &>h5{
+        display: inline-block;
+        margin: 0 20px;
+    }
+}

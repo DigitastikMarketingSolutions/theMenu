@@ -1,0 +1,79 @@
+.gamesTab{
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../public/GamesBg.png");
+}
+
+.solo, .squad{
+    width: 350px;
+    height: 200px;
+    background-image: linear-gradient(45deg, #1c0549, #110e16);
+    box-shadow: 0 0 20px #150536;
+    border-radius: 10px;
+    margin: 50px 20px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.solo h1, .squad h1{
+    position: relative;
+    font-size: 1.5rem;
+    font-family: 'Varela Round', sans-serif;
+    color: white;
+    
+}
+
+.solo h1::before{
+    position: absolute;
+    content: attr(data-text);
+    text-shadow: 0 0 10px #2002a7, 0px 0px 8px rgb(1, 4, 192), 0px 0px 10px rgb(246, 246, 247);
+    filter: blur(2px) brightness(0);
+    animation: blink 5s linear infinite;
+    text-align: center;
+}
+
+.squad h1::before{
+    position: absolute;
+    content: attr(data-text);
+    text-shadow: 0 0 10px #d40303, 0px 0px 8px rgb(192, 1, 1), 0px 0px 10px rgb(246, 246, 247);
+    filter: blur(2px) brightness(0);
+    animation: blink 5s linear infinite;
+    animation-delay: 1s;
+    text-align: center;
+}
+
+@keyframes blink {
+    0%{ filter: blur(2px) brightness(1) }
+    29%{ filter: blur(2px) brightness(1) }
+    30%{ filter: blur(2px) brightness(0) }
+    32%{ filter: blur(2px) brightness(1) }
+    64%{ filter: blur(2px) brightness(1) }
+    65%{ filter: blur(2px) brightness(0) }
+    67%{ filter: blur(2px) brightness(1) }
+    74%{ filter: blur(2px) brightness(1) }
+    75%{ filter: blur(2px) brightness(0) }
+    76%{ filter: blur(2px) brightness(1) }
+    100%{ filter: blur(2px) brightness(0) }
+}
+
+@media screen and (max-width: 800px) {
+    .homeTab{
+        flex-direction: column;
+    }
+
+    .solo, .squad{
+        width: 70vw;
+        height: 150px;
+        margin: 0px;
+        font-size: 50vw;
+    }
+}

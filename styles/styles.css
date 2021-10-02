@@ -1,0 +1,19 @@
+:root {
+  --app-font: 'Quicksand', 'Lato', sans-serif;
+  --neutral-color: white;
+}
+
+.App {
+  width: 99vw;
+  height: 100vh;
+  padding: 10px;
+  font-family: var(--app-font);
+  text-align: center;
+  background: var(--neutral-color);
+  user-select: none;
+}
+
+.App>h1{
+  width: 100vw;
+  text-align: center;
+}
