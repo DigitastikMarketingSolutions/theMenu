@@ -22,7 +22,7 @@ export default function Joint(){
             }).then(res => res.data).then(data => {
                 setJoint(data.data)
                 console.log(data.message)
-            })
+            }).catch(err => console.error(err))
         }
     }, [setJoint, jid])
 

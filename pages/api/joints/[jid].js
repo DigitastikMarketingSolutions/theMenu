@@ -16,7 +16,7 @@ const handler = async (req, res) => {
                 newTraffic[date] = JSON.parse(JSON.stringify(joint)).traffic[date] + 1
                 console.log(newTraffic)
                 if(!err){
-                    Joint.findOneAndUpdate({_id: jid}, { $set: {traffic: newTraffic} }, {new: true}, (err, update) => {
+                    Joint.findOneAndUpdate({_id: jid}, {traffic: newTraffic }, {new: true}, (err, update) => {
                         if(!err){
                             console.log(update)
                             res.status(200).json({data: joint, message: "Traffic updated"})
