@@ -67,7 +67,9 @@ export default function Food(props) {
                 />
             </Head>
             <h3 style={styles.heading}>
-                {isVeg ? <span style={styles.veg}>&#128994;</span> : <span style={styles.nonVeg}>&#128308;</span>}
+                <div style={{border: isVeg ? 'solid 1px green' : 'solid 1px red', padding: '2px', backgroundColor: 'white', height: '16px', width: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                    <div style={{height: '10px', width: '10px', display: 'inline-block', margin: '0', borderRadius: '50%', backgroundColor: isVeg ? 'green' : 'red'}}></div>
+                </div>
                 <div style={styles.foodName}>{name}</div>
                 <div>
                     {new Array(spicy).fill(0).map((_) => "🌶️")}
