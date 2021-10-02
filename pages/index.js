@@ -20,15 +20,6 @@ export default function HomePage() {
     const [tab, setTab] = useState(0)
     const [headerHeight, setHeaderHeight] = useState(0)
 
-    // useEffect(() => {
-    //     console.log(headerHeight)
-    // }, [headerHeight])
-    // useEffect(() => {
-    //     if(window){
-    //         tabs.current.children[0].style.height = `${window.screen.height - tabs.current.offsetTop}px`
-    //     }
-    //     // console.log(tabs.current.children[0])
-    // })
     return (
         <MuiThemeProvider theme={theme}>
             <div className={styles.home}>
