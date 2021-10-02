@@ -35,8 +35,10 @@ const handler = async (req, res) => {
                     res.status(500).json({message: "Internal Server Error."})
                 }
             })
+            break;
         default: 
-        res.status(400).json({message: "Bad Request."})
+            res.status(400).json({message: "Bad Request."})
+            break;
     }
 }
 
