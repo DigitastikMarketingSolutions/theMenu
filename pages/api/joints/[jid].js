@@ -21,7 +21,7 @@ const handler = async (req, res) => {
                             console.log(update)
                             res.status(200).json({data: joint, message: "Traffic updated"})
                         } else {
-                            res.status(500).json({data: joint, message: "Traffic could not be updated"})
+                            res.status(200).json({data: joint, message: "Traffic could not be updated"})
                         }
                     })
                 } else {
