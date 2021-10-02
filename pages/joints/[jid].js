@@ -2,8 +2,6 @@ import styles from '../../styles/Menu.module.scss'
 import axios from '../../utils/axios';
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react';
-import Link from 'next/link'
-import Image from 'next/image'
 import Head from 'next/head'
 import {Button} from '@material-ui/core'
 import {ArrowBack} from '@material-ui/icons'
@@ -20,8 +18,7 @@ export default function Joint(){
                 method: "get",
                 headers: {'Access-Control-Allow-Origin': '*'}
             }).then(res => res.data).then(data => {
-                setJoint(data.data)
-                console.log(data.message)
+                setJoint(data)
             }).catch(err => console.error(err))
         }
     }, [setJoint, jid])
@@ -65,9 +62,7 @@ export default function Joint(){
                     <h3>{joint.address}</h3>
                     <h4>Cuisines: {joint.cuisine?.join(', ')}</h4>
                     <h4>Opens At: {joint.opensAt ? handleTime(joint.opensAt) : null}</h4>
-                    <Link href={`/menus/${joint.menu}`}>
-                        <Button variant="contained" color="primary">Check our Menu</Button>
-                    </Link>
+                    <Button variant="contained" color="primary" onClick={() => router.push(`/menus/${joint.menu}?b=1`)}>Check our Menu</Button>
                 </div>
                 <iframe src={joint.directions} width={300} height={225} style={{border: 0}} allowFullScreen loading="lazy"></iframe>
             </div>

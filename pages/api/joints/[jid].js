@@ -4,21 +4,19 @@ import Joint from "../../../models/Joints";
 dbConnect();
 
 const handler = async (req, res) => {
-    const { method, query: { jid }} = req;
+    const { method, query: { jid, type }} = req;
     console.log(method, jid)
     res.setHeader('Access-Control-Allow-Origin', '*')
 
     switch(method){
-        case 'GET':
+        case 'PUT':
             Joint.findById(jid, (err, joint) => {
                 const date = [new Date().toDateString().split(' ')[1],new Date().toDateString().split(' ')[3]].join('')
                 const newTraffic = {...JSON.parse(JSON.stringify(joint)).traffic}
-                newTraffic[date] = JSON.parse(JSON.stringify(joint)).traffic[date] + 1
-                console.log(newTraffic)
+                newTraffic[date][type] += 1
                 if(!err){
                     Joint.findOneAndUpdate({_id: jid}, {traffic: newTraffic }, {new: true}, (err, update) => {
                         if(!err){
-                            console.log(update)
                             res.status(200).json({data: joint, message: "Traffic updated"})
                         } else {
                             res.status(200).json({data: joint, message: "Traffic could not be updated"})
@@ -29,10 +27,10 @@ const handler = async (req, res) => {
                 }
             })
             break;
-        case 'PUT':
-            Joint.findByIdAndUpdate(jid, {$inc: { traffic: 1 }}, (err, update) => {
+        case 'GET':
+            Joint.findById(jid, (err, joint) => {
                 if(!err){
-                    res.status(200).json({message: "Traffic updated"})
+                    res.status(200).json(joint)
                 } else {
                     res.status(500).json({message: "Internal Server Error."})
                 }
