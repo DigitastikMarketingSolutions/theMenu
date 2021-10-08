@@ -1,10 +1,10 @@
 import styles from '../../styles/Menu.module.scss'
 import axios from '../../utils/axios';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import Head from 'next/head'
-import {Button} from '@material-ui/core'
-import {ArrowBack} from '@material-ui/icons'
+import Head from 'next/head';
+import {Button} from '@material-ui/core';
+import {Home} from '@material-ui/icons';
 
 export default function Joint(){
     const router = useRouter();
@@ -52,20 +52,36 @@ export default function Joint(){
                 />
             </Head>
             <div style={{display: 'flex', justifyContent: 'flex-start', padding: '10px'}}>
-                <ArrowBack fontSize="large" style={{color: 'white'}} onClick={() => {
+                <Home fontSize="large" style={{color: 'black'}} onClick={() => {
                     router.replace('/')
                 }}/>
             </div>
-            <h1>{joint.name}</h1>
+            {joint.menu? <>
+            <h1>
+                {joint.name}&nbsp;
+                <span
+                    style={{
+                        fontSize: "4rem",
+                        display: "inline-block",
+                        height: "2rem",
+                        marginTop: "-2rem",
+                    }}
+                >
+                    .
+                </span>
+            </h1>
             <div>
                 <div className={styles.details}>
                     <h3>{joint.address}</h3>
                     <h4>Cuisines: {joint.cuisine?.join(', ')}</h4>
                     <h4>Opens At: {joint.opensAt ? handleTime(joint.opensAt) : null}</h4>
-                    <Button variant="contained" color="primary" onClick={() => router.push(`/menus/${joint.menu}?b=1`)}>Check our Menu</Button>
+                    <Button style={{width: '200px', alignSelf: 'center'}} variant="contained" color="primary" onClick={() => router.push(`/menus/${joint.menu}?b=1`)}>Check our Menu</Button>
                 </div>
-                <iframe src={joint.directions} width={300} height={225} style={{border: 0}} allowFullScreen loading="lazy"></iframe>
+                <iframe src={joint.directions} width={300} height={225} style={{padding: '5px', border: 'solid 2px black', borderRadius: '5px'}} allowFullScreen loading="lazy"></iframe>
             </div>
+            </> : null}
         </div>
     )
 }
+
+// https://docs.google.com/document/d/1g47HMvyoFJl13Iggtbu5vokiQG1ZiU1iRXgSXXpdqOM/edit

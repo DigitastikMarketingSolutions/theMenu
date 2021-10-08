@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../../styles/Menu.module.scss";
 import Footer from "../../components/Footer";
 import axios from "../../utils/axios";
@@ -10,7 +9,7 @@ import Food from "../../components/Food";
 import Link from "next/link";
 import { Home, Share } from "@material-ui/icons";
 
-export default function MenuPage() {
+export default function MenuPage(props) {
     const router = useRouter();
     const menuId = router.query.menuId;
     const b = router.query.b;
@@ -56,7 +55,7 @@ export default function MenuPage() {
                 })
                 .catch((err) => console.log(err));
         }
-    }, [menuId, b, setMenu]);
+    }, [menuId, b, setMenu, props.data]);
 
     return (
         <div className={styles.menu}>
@@ -102,7 +101,7 @@ export default function MenuPage() {
                 </Link>
                 <Share
                     fontSize={"large"}
-                    style={{ color: "black", margin: "0 10px", cursor: 'pointer' }}
+                    style={{ color: "black", visibility: menu.menu ? 'visible' : 'hidden', margin: "0 10px", cursor: 'pointer' }}
                     onClick={() => {
                         navigator.clipboard.writeText(
                             `https://trythemenu.com/menus/${menuId}?b=1`
@@ -127,6 +126,7 @@ export default function MenuPage() {
                     backgroundColor: "white",
                     fontFamily: "'Poppins', sans-serif",
                     fontWeight: 600,
+                    visibility: menu.menu ? 'visible' : 'hidden'
                 }}
                 onClick={(e) => {
                     setMenuDrawer(e.currentTarget);
@@ -209,8 +209,17 @@ export default function MenuPage() {
                           })}
                       </div>
                   ))
-                : null}
+                : <h1>Puja Special Menu Coming Soon...</h1>}
             <Footer />
         </div>
     );
 }
+
+// export async function getServerSideProps(context){
+//     const menu = await axios.get(`/menus/${context.params.id}`, {headers: { "Access-Control-Allow-Origin": "*" }})
+//     return {
+//         props: {
+//             data: menu
+//         }
+//     }
+// }

@@ -4,6 +4,19 @@ import { useEffect, useState } from "react";
 import axios from "../utils/axios";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import restaurantBg from "../public/restaurantBg.jpg";
+import cafeBg from "../public/cafeBg.jpg"
+import cloudKitchenBg from "../public/cloudKitchenBg.jpg"
+import bakeryBg from "../public/bakeryBg.jpg"
+import tapriBg from "../public/tapriBg.png"
+
+const jointTypes = [
+    { name: "Restaurants", url: restaurantBg.src },
+    { name: "Cafes & Pubs", url: cafeBg.src },
+    { name: "Cloud Kitchens", url: cloudKitchenBg.src },
+    { name: "Bakeries", url: bakeryBg.src },
+    { name: "Chai-Tapris", url: tapriBg.src },
+];
 
 export default function MenusTab() {
     const router = useRouter();
@@ -43,13 +56,14 @@ export default function MenusTab() {
             </Head>
             <h1
                 style={{
-                    fontWeight: 400,
+                    fontWeight: 600,
                     fontFamily: '"Poppins", sans-serif',
                     padding: "10px",
                     margin: "10px",
                     borderRadius: "6px",
-                    fontSize: "1.5rem",
+                    fontSize: "3rem",
                     textAlign: "center",
+                    color: "black",
                 }}
             >
                 Food Hubs!
@@ -59,10 +73,29 @@ export default function MenusTab() {
                 onChange={handleSearchInput}
                 label="Search for menus ..."
                 variant="filled"
-                color="primary"
+                style={{
+                    backgroundColor: "#2f2f2f",
+                    borderRadius: "5px 5px 0 0",
+                    border: "solid 1px #666",
+                    padding: "2px",
+                }}
+                InputProps={{
+                    style: {color: "white"}
+                }}
+                InputLabelProps={{
+                    style: {color: "wheat"}
+                }}
+                SelectProps={{
+                    style: {borderBottom: '2px solid white'}
+                }}
                 type="search"
             />
-            <div>
+            <div
+                style={{
+                    position: "relative",
+                    zIndex: "3",
+                }}
+            >
                 {filteredData.length
                     ? filteredData.map((i) => (
                           <h2
@@ -75,6 +108,9 @@ export default function MenusTab() {
                                   padding: "10px",
                                   margin: "10px",
                                   borderRadius: "6px",
+                                  cursor: "pointer",
+                                  position: "relative",
+                                  zIndex: "3",
                               }}
                               onClick={() => router.push(`/joints/${i._id}`)}
                           >
@@ -82,6 +118,35 @@ export default function MenusTab() {
                           </h2>
                       ))
                     : null}
+            </div>
+            <div className={styles.jointTypes}>
+                <h2 style={{ color: "black", fontSize: "2rem" }}>
+                    Search by type!
+                </h2>
+                <div
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "flex-start",
+                        width: "90vw",
+                        // scrollbarColor: '#6f6f6f',
+                        scrollbarColor: "#6f6f6f rgba(0, 0, 0, 0.2)",
+                        scrollbarWidth: "5px",
+                    }}
+                >
+                    {jointTypes.map((i) => (
+                        <div
+                            className={styles.jointCards}
+                            style={{
+                                backgroundImage: `url(${i.url})`,
+                                backgroundSize: "cover",
+                            }}
+                            key={i.name}
+                        >
+                            <div>{i.name}</div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );

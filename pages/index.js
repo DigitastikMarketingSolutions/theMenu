@@ -35,7 +35,7 @@ export default function HomePage() {
                 >
                     <Tab icon={<HomeOutlined/>} label="Home"></Tab>
                     <Tab icon={<SportsEsportsOutlined/>} label="Games"></Tab>
-                    <Tab icon={<RestaurantMenuOutlined/>} label="Foods"></Tab>
+                    <Tab icon={<RestaurantMenuOutlined/>} label="Menus"></Tab>
                     <Tab icon={<BookOutlined/>} label="Blogs"></Tab>
                 </Tabs>
                 <SwipableViews axis="x" index={tab} onChangeIndex={(index) => setTab(index)}>
