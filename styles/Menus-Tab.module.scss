@@ -26,33 +26,30 @@
             justify-content: flex-start;
             width: 90vw;
             overflow-x: scroll;
-            scrollbar-color: #6f6f6f;
-            scrollbar-width: 5px;
-            scrollbar-track-color: rgba($color: #000000, $alpha: 0.2);
-            // ::-webkit-scrollbar {
-            //     width: 5px;
-            //   }
+        }
+        &>div::-webkit-scrollbar {
+            height: 5px;
+        }
               
-            //   /* Track */
-            //   ::-webkit-scrollbar-track {
-            //     box-shadow: inset 0 0 5px grey; 
-            //     border-radius: 30px;
-            //     padding: 2px;
-            //   }
-               
-            //   /* Handle */
-            //   ::-webkit-scrollbar-thumb {
-            //     background: #6f6f6f; 
-            //     border-radius: 10px;
-            //   }
-              
-            //   /* Handle on hover */
-            //   ::-webkit-scrollbar-thumb:hover {
-            //     background: #b30000;
-            //   }
-            //   ::-webkit-scrollbar:hover {
-            //     width: 10px;
-            //   }
+        /* Track */
+        &>div::-webkit-scrollbar-track {
+          box-shadow: inset 0 0 5px grey; 
+          border-radius: 30px;
+          padding: 2px;
+        }
+         
+        /* Handle */
+        &>div::-webkit-scrollbar-thumb {
+          background: #6f6f6f; 
+          border-radius: 10px;
+        }
+        
+        /* Handle on hover */
+        &>div::-webkit-scrollbar-thumb:hover {
+          background: #b30000;
+        }
+        &>div::-webkit-scrollbar:hover {
+          width: 2px;
         }
     }
     .jointCards{
@@ -68,14 +65,14 @@
         justify-content: center;
         font-family: "Poppins", sans-serif;
         font-size: 1.4rem;
-        box-shadow: 0 0 10px #666;
+        box-shadow: 0 0 10px rgb(82, 82, 82);
         
         &>div{
             width: 100%;
             height: 100%;
             margin: 0;
             padding: 0;
-            background-color: rgba(0,0,0,0.3);
+            background-color: rgba(0,0,0,0.4);
             text-align: center;
             color: white;
             font-weight: 600;

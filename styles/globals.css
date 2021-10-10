@@ -15,3 +15,28 @@ a {
 * {
   box-sizing: border-box;
 }
+
+@keyframes spin4 {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(2916deg) }
+}
+
+@keyframes spin3 {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(2988deg) }
+}
+
+@keyframes spin2 {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(3060deg) }
+}
+
+@keyframes spin1 {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(3132deg) }
+}
+
+@keyframes spin0 {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(3204deg) }
+}

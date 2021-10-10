@@ -209,7 +209,10 @@ export default function MenuPage(props) {
                           })}
                       </div>
                   ))
-                : <h1>Puja Special Menu Coming Soon...</h1>}
+                : menu.menu === "" ? 
+                    <h1>Puja Special Menu Coming Soon...</h1> :
+                    null
+                }
             <Footer />
         </div>
     );

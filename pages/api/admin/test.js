@@ -7,8 +7,8 @@ const handler = async(req, res) => {
         case 'GET':
             mongo.MongoClient.connect(process.env.MONGO_URI, (err, client) => {
               const bucket = new mongo.GridFSBucket(client.db('theMenu'), {bucketName: 'Menus'})
-              createReadStream('./temp/1633651361364.json').
-              pipe(bucket.openUploadStream('1633651361364.json', {contentType: 'application/json'})).
+              createReadStream('./temp/1633807193632.json').
+              pipe(bucket.openUploadStream('1633807193632.json', {contentType: 'application/json'})).
               on('error', function(error) {
                 console.log(error);
               }).
@@ -23,8 +23,8 @@ const handler = async(req, res) => {
                 const bucket = new mongo.GridFSBucket(client.db('theMenu'), {bucketName: 'Menus'})
                 bucket.delete(mongoose.Types.ObjectId(req.query.id), (err) => {
                     if(!err){
-                        createReadStream('./temp/test2.json').
-                        pipe(bucket.openUploadStreamWithId(mongoose.Types.ObjectId(req.query.id), './temp/test2.json', {contentType: 'application/json'})).
+                        createReadStream('./temp/1633844086472.json').
+                        pipe(bucket.openUploadStreamWithId(mongoose.Types.ObjectId(req.query.id), '1633844086472.json', {contentType: 'application/json'})).
                         on('error', function(error) {
                           console.log(error);
                         }).
