@@ -9,7 +9,7 @@ import BlogsTab from "../components/BlogsTab";
 import { Tabs, Tab, MuiThemeProvider, responsiveFontSizes, createTheme } from "@material-ui/core";
 import { HomeOutlined, SportsEsportsOutlined, RestaurantMenuOutlined, BookOutlined } from "@material-ui/icons";
 import SwipableViews from 'react-swipeable-views'
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 
 export default function HomePage() {
     let theme = createTheme();
@@ -33,16 +33,16 @@ export default function HomePage() {
                     value={tab}
                     onChange={(e, value) => setTab(value)}
                 >
-                    <Tab icon={<HomeOutlined/>} label="Home"></Tab>
+                    {/* <Tab icon={<HomeOutlined/>} label="Home"></Tab> */}
                     <Tab icon={<SportsEsportsOutlined/>} label="Games"></Tab>
                     <Tab icon={<RestaurantMenuOutlined/>} label="Menus"></Tab>
                     <Tab icon={<BookOutlined/>} label="Blogs"></Tab>
                 </Tabs>
                 <SwipableViews axis="x" index={tab} onChangeIndex={(index) => setTab(index)}>
-                    <HomeTab hidden={tab!==0}/>
-                    <GamesTab hidden={tab!==1}/>
-                    <MenusTab hidden={tab!==2}/>
-                    <BlogsTab hidden={tab!==3}/>
+                    {/* <HomeTab hidden={tab!==0}/> */}
+                    <GamesTab hidden={tab!==0}/>
+                    <MenusTab hidden={tab!==1}/>
+                    <BlogsTab hidden={tab!==2}/>
                 </SwipableViews>
                 <Footer />
             </div>

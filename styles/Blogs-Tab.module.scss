@@ -4,8 +4,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: orange;
+    background-image: linear-gradient(135deg, orange, rgb(166, 255, 0));
     h1{
         font-size: 2rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 400;
     }
 }
