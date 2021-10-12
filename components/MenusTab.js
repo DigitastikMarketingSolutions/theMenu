@@ -11,11 +11,11 @@ import bakeryBg from "../public/bakeryBg.jpg"
 import tapriBg from "../public/tapriBg.png"
 
 const jointTypes = [
-    { name: "Restaurants", url: restaurantBg.src },
-    { name: "Cafes & Pubs", url: cafeBg.src },
-    { name: "Cloud Kitchens", url: cloudKitchenBg.src },
-    { name: "Bakeries", url: bakeryBg.src },
-    { name: "Chai-Tapris", url: tapriBg.src },
+    { name: "Restaurants", imageUrl: restaurantBg.src, urlQuery: "restaurant" },
+    { name: "Cafes & Pubs", imageUrl: cafeBg.src, urlQuery: "cafe" },
+    { name: "Cloud Kitchens", imageUrl: cloudKitchenBg.src, urlQuery: "cloud" },
+    { name: "Bakeries", imageUrl: bakeryBg.src, urlQuery: "bakery" },
+    { name: "Chai-Tapris", imageUrl: tapriBg.src, urlQuery: "tapri" },
 ];
 
 export default function MenusTab() {
@@ -138,10 +138,12 @@ export default function MenusTab() {
                         <div
                             className={styles.jointCards}
                             style={{
-                                backgroundImage: `url(${i.url})`,
+                                backgroundImage: `url(${i.imageUrl})`,
                                 backgroundSize: "cover",
+                                cursor: "pointer"
                             }}
                             key={i.name}
+                            onClick={() => router.push(`/joints?type=${i.urlQuery}`)}
                         >
                             <div>{i.name}</div>
                         </div>
