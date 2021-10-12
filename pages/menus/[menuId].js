@@ -71,7 +71,9 @@ export default function MenuPage(props) {
                     rel="stylesheet"
                 />
             </Head>
-            <h1>
+            <h1 onClick={() => {
+                router.push(`/joints/${menu.jointId}`)
+            }}>
                 {menu.joint}&nbsp;
                 <span
                     style={{

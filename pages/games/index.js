@@ -3,6 +3,7 @@ import Head from 'next/head'
 import styles from "../../styles/Games-Tab.module.css"
 import logo from "../../public/spinningWheelLogo.png"
 import { useRouter } from 'next/router'
+import Footer from '../../components/Footer'
 
 function Games() {
     const router = useRouter()
@@ -11,9 +12,9 @@ function Games() {
             <Head>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={true}/>
-                <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet"/>
+                <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Varela+Round&display=swap" rel="stylesheet"/>
             </Head>
-            <div  className={styles.card} onClick={() => router.push('/games/spinning-wheel')}>
+            <div className={styles.card} onClick={() => router.push('/games/spinning-wheel')}>
                 <Image src={logo} width={200} height={200} alt=""/>
             </div>
             <div style={{display: "flex", width: '100vw', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-evenly'}}>
@@ -24,6 +25,7 @@ function Games() {
                     <h1 data-text="SQUAD">SQUAD</h1>
                 </div>
             </div>
+            <Footer/>
         </div>
     )
 }

@@ -52,7 +52,7 @@ export default function Joint(){
                 />
             </Head>
             <div style={{display: 'flex', justifyContent: 'flex-start', padding: '10px'}}>
-                <Home fontSize="large" style={{color: 'black'}} onClick={() => {
+                <Home fontSize="large" style={{color: 'black', cursor: 'pointer'}} onClick={() => {
                     router.replace('/')
                 }}/>
             </div>
@@ -75,6 +75,7 @@ export default function Joint(){
                     <h3>{joint.address}</h3>
                     <h4>Cuisines: {joint.cuisine?.join(', ')}</h4>
                     <h4>Opens At: {joint.opensAt ? handleTime(joint.opensAt) : null}</h4>
+                    {joint.phone ? <h4>Contact us at {joint.phone}!</h4> : null}
                     <Button style={{width: '200px', alignSelf: 'center'}} variant="contained" color="primary" onClick={() => router.push(`/menus/${joint.menu}?b=1`)}>Check our Menu</Button>
                 </div>
                 <iframe src={joint.directions} width={300} height={225} style={{padding: '5px', border: 'solid 2px black', borderRadius: '5px'}} allowFullScreen loading="lazy"></iframe>

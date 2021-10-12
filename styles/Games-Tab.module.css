@@ -26,7 +26,7 @@
 
 .solo h1, .squad h1{
     position: relative;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     font-family: 'Varela Round', sans-serif;
     color: white;
     
@@ -56,24 +56,25 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    padding-top: 30px;
     align-items: center;
     background-image: url("../public/GamesBg.png");
 }
 
 .card{
-    width: 350px;
-    height: 200px;
+    width: 300px;
+    height: 150px;
     background-image: linear-gradient(45deg, #1c0549, #110e16);
     box-shadow: 0 0 20px #150536;
     border-radius: 10px;
-    margin: 50px 20px;
+    margin: 10px 20px;
     padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    z-index: 3;
+    /* position: relative;
+    z-index: 3; */
     cursor: pointer;
 }
 

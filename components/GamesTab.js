@@ -5,11 +5,11 @@ export default function GamesTab(){
     const router = useRouter()
     return (
         <div className={styles.gamesTab}>
-            <div className={styles.solo} onClick={() => router.push('/games/spinning-wheel')}>
-                <h1 data-text="Spinning Wheel">Spinning Wheel</h1>
+            <div className={styles.solo} onClick={() => router.push('/games/solo')}>
+                <h1 data-text="SOLO">SOLO</h1>
             </div>
-            <div className={styles.squad} onClick={() => router.push('/games/chess')}>
-                <h1 data-text="Let's Play Chess">Let&apos;s Play Chess</h1>
+            <div className={styles.squad} onClick={() => router.push('/games/squad')}>
+                <h1 data-text="SQUAD">SQUAD</h1>
             </div>
         </div>
     )
