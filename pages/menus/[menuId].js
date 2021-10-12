@@ -146,7 +146,7 @@ export default function MenuPage(props) {
                         left: "50%",
                         transform: "translateX(-25px) translateY(40px)",
                         backgroundColor: "#2f2f2f",
-                        height: "60vh",
+                        maxHeight: "60vh",
                     },
                 }}
                 MenuListProps={{
