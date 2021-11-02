@@ -87,7 +87,7 @@ export default function Joints() {
                               className={styles.menusSearchResults}
                               onClick={() => router.push(`/joints/${i._id}`)}
                           >
-                              <h1>{i.name}</h1>
+                              <h1>{i.dispName}</h1>
                               <h3>{i.address}</h3>
                           </div>
                       ))

@@ -1,13 +1,23 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import styles from "../../styles/Menu.module.scss";
 import Footer from "../../components/Footer";
 import axios from "../../utils/axios";
-import { Button, Menu, MenuItem, Snackbar } from "@material-ui/core";
+import {
+    Button,
+    Menu,
+    MenuItem,
+    Modal,
+    Snackbar,
+    Tab,
+    Tabs,
+} from "@material-ui/core";
 import Food from "../../components/Food";
+import MenuComp from "../../components/Menu";
 import Link from "next/link";
-import { Home, Share } from "@material-ui/icons";
+import { Home, LocalBar, LocalDining, Share } from "@material-ui/icons";
+import SwipeableViews from "react-swipeable-views";
 
 export default function MenuPage(props) {
     const router = useRouter();
@@ -16,6 +26,7 @@ export default function MenuPage(props) {
     const [menu, setMenu] = useState({});
     const [menuDrawer, setMenuDrawer] = useState(null);
     const [open, setOpen] = useState(false);
+    const [menuNum, setMenuNum] = useState(0);
     const colorScheme = {
         primary1: "#0b0c10",
         primary2: "#1f2833",
@@ -33,25 +44,26 @@ export default function MenuPage(props) {
                 .then((res) => res.data)
                 .then((data) => {
                     setMenu(data);
-                    if(b===undefined){
-                        axios({
-                            url: `/joints/${data.jointId}?type=active`,
-                            method: "put",
-                            headers: { "Access-Control-Allow-Origin": "*" },
-                        })
-                            .then((resp) => resp.data)
-                            .then((_) => console.log(_.message))
-                            .catch((err) => console.error(err));
-                    } else if(b==='1'){
-                        axios({
-                            url: `/joints/${data.jointId}?type=online`,
-                            method: "put",
-                            headers: { "Access-Control-Allow-Origin": "*" },
-                        })
-                            .then((resp) => resp.data)
-                            .then((_) => console.log(_.message))
-                            .catch((err) => console.error(err));
-                    }
+                    console.log(data)
+                    // if (b === undefined) {
+                    //     axios({
+                    //         url: `/joints/${data.jointId}?type=active`,
+                    //         method: "put",
+                    //         headers: { "Access-Control-Allow-Origin": "*" },
+                    //     })
+                    //         .then((resp) => resp.data)
+                    //         .then((_) => console.log(_.message))
+                    //         .catch((err) => console.error(err));
+                    // } else if (b === "1") {
+                    //     axios({
+                    //         url: `/joints/${data.jointId}?type=online`,
+                    //         method: "put",
+                    //         headers: { "Access-Control-Allow-Origin": "*" },
+                    //     })
+                    //         .then((resp) => resp.data)
+                    //         .then((_) => console.log(_.message))
+                    //         .catch((err) => console.error(err));
+                    // }
                 })
                 .catch((err) => console.log(err));
         }
@@ -71,9 +83,28 @@ export default function MenuPage(props) {
                     rel="stylesheet"
                 />
             </Head>
-            <h1 onClick={() => {
-                router.push(`/joints/${menu.jointId}`)
-            }}>
+            {/* <Modal open={!menu.menu}>
+                <div
+                    style={{
+                        position: "relative",
+                        width: "99vw",
+                        height: "99vh",
+                        backgroundColor: "#f9f2e2",
+                        top: "0.5vh",
+                        left: "0.5vw",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}
+                >
+                    <h1>Please wait!<br/>Menu incoming ...</h1>
+                </div>
+            </Modal> */}
+            <h1
+                onClick={() => {
+                    router.push(`/joints/${menu.jointId}`);
+                }}
+            >
                 {menu.joint}&nbsp;
                 <span
                     style={{
@@ -98,12 +129,21 @@ export default function MenuPage(props) {
                 <Link href={`/`}>
                     <Home
                         fontSize={"large"}
-                        style={{ color: "black", marginLeft: "10vw", cursor: 'pointer' }}
+                        style={{
+                            color: "black",
+                            marginLeft: "10vw",
+                            cursor: "pointer",
+                        }}
                     />
                 </Link>
                 <Share
                     fontSize={"large"}
-                    style={{ color: "black", visibility: menu.menu ? 'visible' : 'hidden', margin: "0 10px", cursor: 'pointer' }}
+                    style={{
+                        color: "black",
+                        visibility: menu.menu ? "visible" : "hidden",
+                        margin: "0 10px",
+                        cursor: "pointer",
+                    }}
                     onClick={() => {
                         navigator.clipboard.writeText(
                             `https://trythemenu.com/menus/${menuId}?b=1`
@@ -118,6 +158,15 @@ export default function MenuPage(props) {
                     message="Link is copied to the clipboard."
                 />
             </div>
+            {/* <Tabs
+                value={menuNum}
+                centered
+                onChange={(e, value) => setMenuNum(value)}
+                style={{margin: '50px 0 -30px 0'}}
+            >
+                <Tab icon={<LocalDining />} label="Food" />
+                <Tab icon={<LocalBar />} label="Drinks" />
+            </Tabs> */}
             <Button
                 className={styles.menuDrawer}
                 color="primary"
@@ -157,23 +206,29 @@ export default function MenuPage(props) {
             >
                 {menu.menu
                     ? Object.keys(menu.menu).map((i, idx) => (
-                          <Link key={i} href={`/menus/${menuId}/#${idx}`}>
+                        //   <Link href={`/menus/${menuId}/#${idx}`}>
                               <MenuItem
-                                  style={{
-                                      borderBottom: "solid 2px white",
-                                      margin: "0 10px",
-                                      fontFamily: "'Poppins', sans-serif",
-                                      fontWeight: 400,
-                                  }}
-                                  onClick={() => setMenuDrawer(null)}
+                                key={idx}
+                                style={{
+                                    borderBottom: "solid 2px white",
+                                    margin: "0 10px",
+                                    fontFamily: "'Poppins', sans-serif",
+                                    fontWeight: 400,
+                                }}
+                                onClick={async () => {
+                                    setMenuDrawer(null)
+                                    let section = await document.getElementById(`${i}`)
+                                    console.log(section)
+                                    section.scrollIntoView({behavior: 'smooth', block: 'start'})
+                                }}
                               >
                                   {i}
                               </MenuItem>
-                          </Link>
+                        //   </Link>
                       ))
                     : null}
             </Menu>
-            {menu.menu
+            {/* {menu.menu
                 ? Object.keys(menu.menu).map((i, idx) => (
                       <div className={styles.sections} key={i}>
                           <h1
@@ -214,7 +269,30 @@ export default function MenuPage(props) {
                 : menu.menu === "" ? 
                     <h1>Puja Special Menu Coming Soon...</h1> :
                     null
-                }
+                } */}
+            {menu.menu ? (
+                    <MenuComp menu={menu.menu} menuId={menuId} />
+                ) : (
+                    null
+                )
+            }
+            {/* <SwipeableViews
+                axis="x"
+                index={menuNum}
+                onChangeIndex={(index) => setMenuNum(index)}
+                style={{width: '100vw'}}
+            >
+                {menu.menu ? (
+                    <MenuComp menu={menu.menu} menuId={menuId} />
+                ) : (
+                    null
+                )}
+                {menu.menu ? (
+                    <MenuComp menu={menu.menu} menuId={menuId} />
+                ) : (
+                    null
+                )}
+            </SwipeableViews> */}
             <Footer />
         </div>
     );

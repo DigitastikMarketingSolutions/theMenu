@@ -35,3 +35,6 @@ yarn-error.log*
 .vercel
 
 
+pages/api/menu
+models/FoodSections.js
+models/Menus.js

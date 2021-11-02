@@ -58,7 +58,7 @@ export default function Joint(){
             </div>
             {joint.menu? <>
             <h1>
-                {joint.name}&nbsp;
+                {joint.dispName}&nbsp;
                 <span
                     style={{
                         fontSize: "4rem",

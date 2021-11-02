@@ -114,7 +114,7 @@ export default function MenusTab() {
                               }}
                               onClick={() => router.push(`/joints/${i._id}`)}
                           >
-                              {i.name}
+                              {i.dispName}
                           </h2>
                       ))
                     : null}
