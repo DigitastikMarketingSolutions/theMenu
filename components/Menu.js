@@ -82,7 +82,7 @@ export default function MenuComp(props) {
             </Menu> */}
             {props.menu
                 ? Object.keys(props.menu).map((i, idx) => (
-                      <div className={styles.sections} key={idx} id={i}>
+                      <div className={styles.sections} key={idx}>
                           <h1
                               style={{
                                   width: '100%',
@@ -93,6 +93,7 @@ export default function MenuComp(props) {
                                   fontFamily: "'Poppins', sans-serif",
                                   fontWeight: 800,
                               }}
+                              id={i}
                           >
                               &quot;&nbsp;{i}&nbsp;&quot;
                           </h1>

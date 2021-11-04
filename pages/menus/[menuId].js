@@ -26,6 +26,7 @@ export default function MenuPage(props) {
     const [menu, setMenu] = useState({});
     const [menuDrawer, setMenuDrawer] = useState(null);
     const [open, setOpen] = useState(false);
+    const [menuLabel, setMenuLabel] = useState([]);
     const [menuNum, setMenuNum] = useState(0);
     const colorScheme = {
         primary1: "#0b0c10",
@@ -45,6 +46,16 @@ export default function MenuPage(props) {
                 .then((data) => {
                     setMenu(data);
                     console.log(data)
+                    let labels = []
+                    Object.keys(data).forEach(i => {
+                        if(i.includes('menu')){
+                            labels.push(i)
+                        }
+                    });
+                    setMenuLabel(curr => {
+                        return labels.includes('menu') ? ['menu'] : [...labels]
+                    })
+                    console.log(labels)
                     // if (b === undefined) {
                     //     axios({
                     //         url: `/joints/${data.jointId}?type=active`,
@@ -67,7 +78,7 @@ export default function MenuPage(props) {
                 })
                 .catch((err) => console.log(err));
         }
-    }, [menuId, b, setMenu, props.data]);
+    }, [menuId, b, setMenu, setMenuLabel, props.data]);
 
     return (
         <div className={styles.menu}>
@@ -158,15 +169,17 @@ export default function MenuPage(props) {
                     message="Link is copied to the clipboard."
                 />
             </div>
-            {/* <Tabs
+            {menuLabel.length !== 1 ? <Tabs
                 value={menuNum}
                 centered
                 onChange={(e, value) => setMenuNum(value)}
                 style={{margin: '50px 0 -30px 0'}}
             >
-                <Tab icon={<LocalDining />} label="Food" />
-                <Tab icon={<LocalBar />} label="Drinks" />
-            </Tabs> */}
+                {menuLabel.map((i, idx) => (
+                    <Tab style={{fontWeight: '600', fontFamily: "'Poppins', sans-serif"}} key={idx} label={`${i.split('menu')[0]} Menu`}/>
+                ))}
+            </Tabs>
+            : null}
             <Button
                 className={styles.menuDrawer}
                 color="primary"
@@ -177,7 +190,7 @@ export default function MenuPage(props) {
                     backgroundColor: "white",
                     fontFamily: "'Poppins', sans-serif",
                     fontWeight: 600,
-                    visibility: menu.menu ? 'visible' : 'hidden'
+                    visibility: menuLabel.length ? 'visible' : 'hidden'
                 }}
                 onClick={(e) => {
                     setMenuDrawer(e.currentTarget);
@@ -204,8 +217,8 @@ export default function MenuPage(props) {
                     },
                 }}
             >
-                {menu.menu
-                    ? Object.keys(menu.menu).map((i, idx) => (
+                {menuLabel.length
+                    ? Object.keys(menu[menuLabel[menuNum]]).map((i, idx) => (
                         //   <Link href={`/menus/${menuId}/#${idx}`}>
                               <MenuItem
                                 key={idx}
@@ -270,29 +283,32 @@ export default function MenuPage(props) {
                     <h1>Puja Special Menu Coming Soon...</h1> :
                     null
                 } */}
-            {menu.menu ? (
+            {/* {menu.menu ? (
                     <MenuComp menu={menu.menu} menuId={menuId} />
                 ) : (
                     null
                 )
-            }
-            {/* <SwipeableViews
+            } */}
+            {menuLabel.length !==1 ? <SwipeableViews
                 axis="x"
                 index={menuNum}
                 onChangeIndex={(index) => setMenuNum(index)}
                 style={{width: '100vw'}}
             >
-                {menu.menu ? (
-                    <MenuComp menu={menu.menu} menuId={menuId} />
-                ) : (
-                    null
-                )}
-                {menu.menu ? (
-                    <MenuComp menu={menu.menu} menuId={menuId} />
-                ) : (
-                    null
-                )}
-            </SwipeableViews> */}
+                {
+                    menuLabel.map((i, idx) => {
+                        return menu[i] ? (
+                            <div key={idx}><MenuComp menu={menu[i]} menuId={menuId} /></div>
+                        ) : (
+                            null
+                        )
+                    })
+                }
+            </SwipeableViews> : 
+            menu.menu ? (
+                <MenuComp menu={menu.menu} menuId={menuId} />
+            ) : null
+            }
             <Footer />
         </div>
     );
