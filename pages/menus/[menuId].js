@@ -151,13 +151,13 @@ export default function MenuPage(props) {
                     fontSize={"large"}
                     style={{
                         color: "black",
-                        visibility: menu.menu ? "visible" : "hidden",
+                        visibility: menuLabel.length ? "visible" : "hidden",
                         margin: "0 10px",
                         cursor: "pointer",
                     }}
                     onClick={() => {
                         navigator.clipboard.writeText(
-                            `https://trythemenu.com/menus/${menuId}?b=1`
+                            `https://trythemenu.com/menus/${menuId}`
                         );
                         setOpen(true);
                     }}
