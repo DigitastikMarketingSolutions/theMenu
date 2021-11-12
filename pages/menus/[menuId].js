@@ -191,7 +191,7 @@ export default function MenuPage(props) {
                     fontFamily: "'Poppins', sans-serif",
                     fontWeight: 600,
                     visibility: menuLabel.length ? 'visible' : 'hidden',
-                    margin: menuLabel.length===1 ? '0 20px' : '-70px 0 70px 0',
+                    margin: menuLabel.length===1 ? '0 20px' : '-70px 20px 70px 20px',
                     alignSelf: 'end'
                 }}
                 onClick={(e) => {
