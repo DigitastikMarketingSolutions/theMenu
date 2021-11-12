@@ -53,7 +53,7 @@ export default function MenuPage(props) {
                         }
                     });
                     setMenuLabel(curr => {
-                        return labels.includes('menu') ? ['menu'] : [...labels]
+                        return labels.length === 1 ? ['menu'] : [...labels]
                     })
                     console.log(labels)
                     // if (b === undefined) {
@@ -232,7 +232,7 @@ export default function MenuPage(props) {
                                 }}
                                 onClick={async () => {
                                     setMenuDrawer(null)
-                                    let section = await document.getElementById(`${i}`)
+                                    let section = await document.getElementById(`${i+menuLabel[menuNum]}`)
                                     console.log(section)
                                     section.scrollIntoView({behavior: 'smooth', block: 'start'})
                                 }}
@@ -300,7 +300,7 @@ export default function MenuPage(props) {
                 {
                     menuLabel.map((i, idx) => {
                         return menu[i] ? (
-                            <div key={idx}><MenuComp menu={menu[i]} menuId={menuId} /></div>
+                            <div key={idx}><MenuComp menu={menu[i]} menuName={i} menuId={menuId} /></div>
                         ) : (
                             null
                         )

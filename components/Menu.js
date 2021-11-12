@@ -93,7 +93,7 @@ export default function MenuComp(props) {
                                   fontFamily: "'Poppins', sans-serif",
                                   fontWeight: 800,
                               }}
-                              id={i}
+                              id={i+props.menuName}
                           >
                               &quot;&nbsp;{i}&nbsp;&quot;
                           </h1>
