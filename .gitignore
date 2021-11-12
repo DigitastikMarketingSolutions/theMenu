@@ -38,3 +38,5 @@ yarn-error.log*
 pages/api/menu
 models/FoodSections.js
 models/Menus.js
+pages/api/graphql.js
+graphql

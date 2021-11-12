@@ -190,7 +190,8 @@ export default function MenuPage(props) {
                     backgroundColor: "white",
                     fontFamily: "'Poppins', sans-serif",
                     fontWeight: 600,
-                    visibility: menuLabel.length ? 'visible' : 'hidden'
+                    visibility: menuLabel.length ? 'visible' : 'hidden',
+                    margin: menuLabel.length===1 ? 'auto' : '-70px 0 70px 0'
                 }}
                 onClick={(e) => {
                     setMenuDrawer(e.currentTarget);
