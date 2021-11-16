@@ -78,7 +78,7 @@ export default function MenuPage(props) {
                 })
                 .catch((err) => console.log(err));
         }
-    }, [menuId, b, setMenu, setMenuLabel, props.data]);
+    }, [menuId, b, setMenu, setMenuLabel]);
 
     return (
         <div className={styles.menu}>
@@ -308,7 +308,7 @@ export default function MenuPage(props) {
                 }
             </SwipeableViews> : 
             menu.menu ? (
-                <MenuComp menu={menu.menu} menuId={menuId} />
+                <MenuComp menu={menu.menu}  menuName={'menu'} menuId={menuId} />
             ) : null
             }
             <Footer />
