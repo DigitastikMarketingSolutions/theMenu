@@ -13,16 +13,14 @@ import {
     Tab,
     Tabs,
 } from "@material-ui/core";
-import Food from "../../components/Food";
 import MenuComp from "../../components/Menu";
 import Link from "next/link";
-import { Home, LocalBar, LocalDining, Share } from "@material-ui/icons";
+import { Home, Share } from "@material-ui/icons";
 import SwipeableViews from "react-swipeable-views";
 
 export default function MenuPage(props) {
     const router = useRouter();
     const menuId = router.query.menuId;
-    const b = router.query.b;
     const [menu, setMenu] = useState({});
     const [menuDrawer, setMenuDrawer] = useState(null);
     const [open, setOpen] = useState(false);
@@ -36,49 +34,19 @@ export default function MenuPage(props) {
     };
 
     useEffect(() => {
-        if (menuId) {
-            axios({
-                url: `/menus/${menuId}`,
-                method: "get",
-                headers: { "Access-Control-Allow-Origin": "*" },
-            })
-                .then((res) => res.data)
-                .then((data) => {
-                    setMenu(data);
-                    console.log(data)
-                    let labels = []
-                    Object.keys(data).forEach(i => {
-                        if(i.includes('menu')){
-                            labels.push(i)
-                        }
-                    });
-                    setMenuLabel(curr => {
-                        return labels.length === 1 ? ['menu'] : [...labels]
-                    })
-                    console.log(labels)
-                    // if (b === undefined) {
-                    //     axios({
-                    //         url: `/joints/${data.jointId}?type=active`,
-                    //         method: "put",
-                    //         headers: { "Access-Control-Allow-Origin": "*" },
-                    //     })
-                    //         .then((resp) => resp.data)
-                    //         .then((_) => console.log(_.message))
-                    //         .catch((err) => console.error(err));
-                    // } else if (b === "1") {
-                    //     axios({
-                    //         url: `/joints/${data.jointId}?type=online`,
-                    //         method: "put",
-                    //         headers: { "Access-Control-Allow-Origin": "*" },
-                    //     })
-                    //         .then((resp) => resp.data)
-                    //         .then((_) => console.log(_.message))
-                    //         .catch((err) => console.error(err));
-                    // }
-                })
-                .catch((err) => console.log(err));
-        }
-    }, [menuId, b, setMenu, setMenuLabel]);
+        setMenu(props.data);
+        console.log(props.data)
+        let labels = []
+        Object.keys(props.data).forEach(i => {
+            if(i.includes('menu')){
+                labels.push(i)
+            }
+        });
+        setMenuLabel(curr => {
+            return labels.length === 1 ? ['menu'] : [...labels]
+        })
+        console.log(labels)
+    }, [setMenu, setMenuLabel, props.data]);
 
     return (
         <div className={styles.menu}>
@@ -90,7 +58,7 @@ export default function MenuPage(props) {
                     crossOrigin="true"
                 />
                 <link
-                    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Montserrat&family=Rock+Salt&family=Varela+Round&family=Permanent+Marker&display=swap"
+                    href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;800&family=Poppins:wght@800&family=Montserrat&family=Rock+Salt&family=Varela+Round&family=Permanent+Marker&display=swap"
                     rel="stylesheet"
                 />
             </Head>
@@ -176,7 +144,7 @@ export default function MenuPage(props) {
                 style={{margin: '50px 0 -30px 0'}}
             >
                 {menuLabel.map((i, idx) => (
-                    <Tab style={{fontWeight: '600', fontFamily: "'Poppins', sans-serif"}} key={idx} label={`${i.split('menu')[0]} Menu`}/>
+                    <Tab style={{fontWeight: '600', fontFamily: "'Rubik', sans-serif"}} key={idx} label={`${i.split('menu')[0]} Menu`}/>
                 ))}
             </Tabs>
             : null}
@@ -188,17 +156,18 @@ export default function MenuPage(props) {
                     color: "black",
                     border: `solid 2px ${colorScheme.primary2}`,
                     backgroundColor: "white",
-                    fontFamily: "'Poppins', sans-serif",
+                    fontFamily: "'Rubik', sans-serif",
                     fontWeight: 600,
                     visibility: menuLabel.length ? 'visible' : 'hidden',
                     margin: menuLabel.length===1 ? '0 20px' : '-70px 20px 70px 20px',
-                    alignSelf: 'end'
+                    alignSelf: 'end',
+                    fontSize: '15px'
                 }}
                 onClick={(e) => {
                     setMenuDrawer(e.currentTarget);
                 }}
             >
-                Menu
+                Categories
             </Button>
             <Menu
                 open={!!menuDrawer}
@@ -208,7 +177,7 @@ export default function MenuPage(props) {
                 PaperProps={{
                     style: {
                         left: "50%",
-                        transform: "translateX(-25px) translateY(40px)",
+                        transform: "translateX(-25px) translateY(47px)",
                         backgroundColor: "#2f2f2f",
                         maxHeight: "60vh",
                     },
@@ -227,7 +196,7 @@ export default function MenuPage(props) {
                                 style={{
                                     borderBottom: "solid 2px white",
                                     margin: "0 10px",
-                                    fontFamily: "'Poppins', sans-serif",
+                                    fontFamily: "'Rubik', sans-serif",
                                     fontWeight: 400,
                                 }}
                                 onClick={async () => {
@@ -252,7 +221,7 @@ export default function MenuPage(props) {
                                   fontSize: "2.2rem",
                                   paddingTop: "30px",
                                   marginTop: "0",
-                                  fontFamily: "'Poppins', sans-serif",
+                                  fontFamily: "'Rubik', sans-serif",
                                   fontWeight: 800,
                               }}
                               id={idx}
@@ -316,11 +285,11 @@ export default function MenuPage(props) {
     );
 }
 
-// export async function getServerSideProps(context){
-//     const menu = await axios.get(`/menus/${context.params.id}`, {headers: { "Access-Control-Allow-Origin": "*" }})
-//     return {
-//         props: {
-//             data: menu
-//         }
-//     }
-// }
+export async function getServerSideProps(context) {
+    let response = await axios.get(`/menus/${context.params.menuId}`, {headers: {'Access-Control-Allow-Origin': '*'}})
+    return {
+      props: {
+          data: response.data
+      }
+    }
+}

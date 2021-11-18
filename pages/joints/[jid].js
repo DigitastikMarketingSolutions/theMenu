@@ -6,22 +6,12 @@ import Head from 'next/head';
 import {Button} from '@material-ui/core';
 import {Home} from '@material-ui/icons';
 
-export default function Joint(){
+export default function Joint(props){
     const router = useRouter();
-    const {jid} = router.query;
     const [joint, setJoint] = useState({})
-
     useEffect(() => {
-        if(jid){
-            axios({
-                url: `/joints/${jid}`,
-                method: "get",
-                headers: {'Access-Control-Allow-Origin': '*'}
-            }).then(res => res.data).then(data => {
-                setJoint(data)
-            }).catch(err => console.error(err))
-        }
-    }, [setJoint, jid])
+        setJoint(props.data)
+    }, [props.data, setJoint])
 
     const handleTime = (num) => {
         const hour = parseInt(num.toString().slice(0,2))
@@ -47,7 +37,7 @@ export default function Joint(){
                     crossOrigin="true"
                 />
                 <link
-                    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&family=Rock+Salt&family=Varela+Round&family=Permanent+Marker&display=swap"
+                    href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;800&family=Poppins:wght@800&family=Rock+Salt&family=Varela+Round&family=Permanent+Marker&display=swap"
                     rel="stylesheet"
                 />
             </Head>
@@ -85,4 +75,12 @@ export default function Joint(){
     )
 }
 
-// https://docs.google.com/document/d/1g47HMvyoFJl13Iggtbu5vokiQG1ZiU1iRXgSXXpdqOM/edit
+export async function getServerSideProps(context) {
+    let response = await axios.get(`/joints/${context.params.jid}`, {headers: {'Access-Control-Allow-Origin': '*'}})
+    console.log(response.data)
+    return {
+      props: {
+          data: response.data
+      }
+    }
+}

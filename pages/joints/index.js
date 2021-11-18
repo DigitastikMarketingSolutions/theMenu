@@ -50,7 +50,7 @@ export default function Joints() {
                     crossOrigin="true"
                 />
                 <link
-                    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&family=Rock+Salt&family=Varela+Round&family=Permanent+Marker&display=swap"
+                    href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;800&family=Rock+Salt&family=Varela+Round&family=Permanent+Marker&display=swap"
                     rel="stylesheet"
                 />
             </Head>
@@ -58,22 +58,25 @@ export default function Joints() {
                 <h1>Food Hubs!</h1>
                 {type? <h3>{jointNames[type]}</h3> : null}
             </div>
-            <TextField
-                className={styles.menusSearchInput}
-                onChange={handleSearchInput}
-                label="Search ..."
-                variant="filled"
-                InputProps={{
-                    style: {color: "white"}
-                }}
-                InputLabelProps={{
-                    style: {color: "wheat"}
-                }}
-                SelectProps={{
-                    style: {borderBottom: '2px solid white'}
-                }}
-                type="search"
-            />
+            {joints.length ? 
+                <TextField
+                    className={styles.menusSearchInput}
+                    onChange={handleSearchInput}
+                    label="Search ..."
+                    variant="filled"
+                    InputProps={{
+                        style: {color: "white"}
+                    }}
+                    InputLabelProps={{
+                        style: {color: "wheat"}
+                    }}
+                    SelectProps={{
+                        style: {borderBottom: '2px solid white'}
+                    }}
+                    type="search"
+                /> :
+                null
+            }
             <div
                 style={{
                     position: "relative",

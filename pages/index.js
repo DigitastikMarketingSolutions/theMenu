@@ -34,14 +34,14 @@ export default function HomePage() {
                     onChange={(e, value) => setTab(value)}
                 >
                     {/* <Tab icon={<HomeOutlined/>} label="Home"></Tab> */}
-                    <Tab icon={<SportsEsportsOutlined/>} label="Games"></Tab>
                     <Tab icon={<RestaurantMenuOutlined/>} label="Menus"></Tab>
+                    <Tab icon={<SportsEsportsOutlined/>} label="Games"></Tab>
                     <Tab icon={<BookOutlined/>} label="Blogs"></Tab>
                 </Tabs>
                 <SwipableViews axis="x" index={tab} onChangeIndex={(index) => setTab(index)}>
                     {/* <HomeTab hidden={tab!==0}/> */}
-                    <GamesTab hidden={tab!==0}/>
-                    <MenusTab hidden={tab!==1}/>
+                    <MenusTab hidden={tab!==0}/>
+                    <GamesTab hidden={tab!==1}/>
                     <BlogsTab hidden={tab!==2}/>
                 </SwipableViews>
                 <Footer />

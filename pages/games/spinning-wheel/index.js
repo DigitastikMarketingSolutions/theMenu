@@ -28,7 +28,7 @@ export default class App extends React.Component {
                 crossOrigin="true"
             />
             <link
-                href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Montserrat&family=Rock+Salt&family=Varela+Round&family=Permanent+Marker&display=swap"
+                href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;800&family=Montserrat&family=Rock+Salt&family=Varela+Round&family=Permanent+Marker&display=swap"
                 rel="stylesheet"
             />
         </Head>
