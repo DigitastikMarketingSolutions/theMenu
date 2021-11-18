@@ -28,7 +28,7 @@ export default function MenuComp(props) {
                     color: "black",
                     border: `solid 2px ${colorScheme.primary2}`,
                     backgroundColor: "white",
-                    fontFamily: "'Poppins', sans-serif",
+                    fontFamily: "'Rubik', sans-serif",
                     fontWeight: 600,
                     visibility: props.menu ? 'visible' : 'hidden'
                 }}
@@ -65,7 +65,7 @@ export default function MenuComp(props) {
                                 style={{
                                     borderBottom: "solid 2px white",
                                     margin: "0 10px",
-                                    fontFamily: "'Poppins', sans-serif",
+                                    fontFamily: "'Rubik', sans-serif",
                                     fontWeight: 400,
                                 }}
                                 onClick={() => {
@@ -90,7 +90,7 @@ export default function MenuComp(props) {
                                   fontSize: "2.2rem",
                                   paddingTop: "30px",
                                   marginTop: "0",
-                                  fontFamily: "'Poppins', sans-serif",
+                                  fontFamily: "'Rubik', sans-serif",
                                   fontWeight: 800,
                               }}
                               id={i+props.menuName}

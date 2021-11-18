@@ -76,7 +76,7 @@ export default function Food(props) {
                     crossOrigin="true"
                 />
                 <link
-                    href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&family=Montserrat&family=Rock+Salt&family=Varela+Round&family=Permanent+Marker&display=swap"
+                    href="https://fonts.googleapis.com/css2?family=Rubik:wght@800&family=Montserrat&family=Rock+Salt&family=Varela+Round&family=Permanent+Marker&display=swap"
                     rel="stylesheet"
                 />
             </Head>
@@ -90,7 +90,7 @@ export default function Food(props) {
                 </div>
             </h3>
             <div style={typeof(price)==="number" ? styles.details : styles.altDetails}>
-                <span  style={styles.desc}>{desc ? desc : null}</span>
+                {desc ? <span  style={styles.desc}>{desc}</span> : null}
                 {typeof(price)==="number" ? 
                     <span style={styles.price}>₹ {price}</span> : 
                     <div style={styles.altPrice}>{price.map((i, idx)=><span style={styles.altPriceSections} key={idx}><b>₹ {i.price}</b> for {i.quan}</span>)}</div>

@@ -29,8 +29,8 @@ const handler = async(req, res) => {
                 const bucket = new mongo.GridFSBucket(client.db('theMenu'), {bucketName: 'Menus'})
                 bucket.delete(mongoose.Types.ObjectId(req.query.id), (err) => {
                     if(!err){
-                        createReadStream('./temp/1637059797463.json').
-                        pipe(bucket.openUploadStreamWithId(mongoose.Types.ObjectId(req.query.id), '1637059797463.json', {contentType: 'application/json'})).
+                        createReadStream('./temp/1637147325165.json').
+                        pipe(bucket.openUploadStreamWithId(mongoose.Types.ObjectId(req.query.id), '1637147325165.json', {contentType: 'application/json'})).
                         on('error', function(error) {
                           console.log(error);
                         }).

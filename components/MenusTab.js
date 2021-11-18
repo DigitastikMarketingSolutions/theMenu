@@ -50,14 +50,14 @@ export default function MenusTab() {
                     crossOrigin="true"
                 />
                 <link
-                    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&family=Montserrat&family=Rock+Salt&family=Varela+Round&family=Permanent+Marker&display=swap"
+                    href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;800&family=Montserrat&family=Rock+Salt&family=Varela+Round&family=Permanent+Marker&display=swap"
                     rel="stylesheet"
                 />
             </Head>
             <h1
                 style={{
                     fontWeight: 600,
-                    fontFamily: '"Poppins", sans-serif',
+                    fontFamily: '"Rubik", sans-serif',
                     padding: "10px",
                     margin: "10px",
                     borderRadius: "6px",
@@ -104,7 +104,7 @@ export default function MenusTab() {
                                   width: "80vw",
                                   backgroundColor: "white",
                                   fontWeight: 400,
-                                  fontFamily: '"Poppins", sans-serif',
+                                  fontFamily: '"Rubik", sans-serif',
                                   padding: "10px",
                                   margin: "10px",
                                   borderRadius: "6px",
