@@ -1,11 +1,11 @@
-import styles from "../../styles/SquadGames.module.scss";
+import styles from "../../styles/SoloGames.module.scss";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-export default function Squad() {
+export default function Solo() {
   const router = useRouter();
   return (
-    <div className={styles.squad}>
+    <div className={styles.solo}>
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -18,6 +18,9 @@ export default function Squad() {
           rel="stylesheet"
         />
       </Head>
+      <div className={styles.card} onClick={() => router.push("/games/chess")}>
+        <h1 data-text="Play Chess">Play Chess</h1>
+      </div>
       <div
         className={styles.card}
         onClick={() => router.push("/games/tictactoe")}

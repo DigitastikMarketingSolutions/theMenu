@@ -1,0 +1,122 @@
+/* **************************** Games Cards **************************** */
+
+div.Game_card {
+  position: relative;
+  margin: 2rem 1rem;
+  width: 44rem;
+  height: 28rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+/* Game Image */
+div.Game_card .Game_figure {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: scale(1);
+  transition: all 0.8s cubic-bezier(0, 1.52, 1, 1.27);
+
+  background-color: rgba(238, 238, 238, 1);
+  background-image: linear-gradient(
+    90deg,
+    rgba(238, 238, 238, 1),
+    rgba(245, 245, 245, 1),
+    rgba(238, 238, 238, 1)
+  );
+  background-size: 200px 100%;
+  background-repeat: no-repeat;
+  animation: shine 1s infinite;
+}
+
+@keyframes shine {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+div.Game_card:hover .Game_figure {
+  transform: scale(1.15);
+}
+
+div.Game_card .Game_figure img {
+  margin: auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 1rem;
+}
+
+/* Game Details */
+div.Game_card .Game_details {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.8);
+  transition: all 0.4s ease;
+  clip-path: inset(100% 0 0 0);
+}
+
+div.Game_card:hover .Game_details {
+  clip-path: inset(0 0 0 0);
+}
+
+div.Game_card .Game_details h4 {
+  margin: 0.5rem auto;
+  padding: 0 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  color: var(--lightyellow);
+  text-align: center;
+  letter-spacing: 0.5px;
+  transform: scale(0);
+  transition: all 0.8s cubic-bezier(0, 1.37, 1, 0);
+  transition-delay: 0.2s;
+}
+
+div.Game_card .Game_details p {
+  margin: 0.5rem auto;
+  padding: 0 4rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+  color: var(--lightgrey);
+  text-align: center;
+  letter-spacing: 0.5px;
+  transform: scale(0);
+  transition: all 0.8s cubic-bezier(0, 1.37, 1, 0);
+  transition-delay: 0.3s;
+}
+
+div.Game_card:hover .Game_details h4,
+div.Game_card:hover .Game_details p {
+  transform: scale(1);
+}
+
+/* **************************** Responsive Media **************************** */
+
+@media (max-width: 432px) {
+  div.Game_card {
+    width: 38rem;
+    height: 24rem;
+  }
+
+  div.Game_card .Game_details h4 {
+    font-size: 1.8rem;
+  }
+  div.Game_card .Game_details p {
+    font-size: 1.4rem;
+  }
+}
+
+/* **************************** Styles End **************************** */
