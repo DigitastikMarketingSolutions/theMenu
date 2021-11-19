@@ -1,6 +1,7 @@
 import styles from "../../styles/SquadGames.module.scss";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import Header from "../../components/Header";
 
 export default function Squad() {
   const router = useRouter();
@@ -18,12 +19,13 @@ export default function Squad() {
           rel="stylesheet"
         />
       </Head>
-      <div
+      <Header />
+      {/* <div
         className={styles.card}
         onClick={() => router.push("/games/tictactoe")}
       >
         <h1 data-text="Play Tic Tac Toe">Play Tic Tac Toe</h1>
-      </div>
+      </div> */}
     </div>
   );
 }

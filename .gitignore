@@ -40,3 +40,4 @@ models/FoodSections.js
 models/Menus.js
 pages/api/graphql.js
 graphql
+pages/games/squad.js

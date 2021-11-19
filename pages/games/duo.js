@@ -1,6 +1,7 @@
 import styles from "../../styles/SoloGames.module.scss";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import Header from "../../components/Header";
 
 export default function Solo() {
   const router = useRouter();
@@ -18,6 +19,8 @@ export default function Solo() {
           rel="stylesheet"
         />
       </Head>
+      <Header />
+
       <div className={styles.card} onClick={() => router.push("/games/chess")}>
         <h1 data-text="Play Chess">Play Chess</h1>
       </div>
